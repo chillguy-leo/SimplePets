@@ -21,7 +21,7 @@ namespace SimplePets.Commands
 
         public string[] Usage { get; } = new string[] { "<new name>" };
 
-        private readonly ProfanityHandler profanityChecker = new();
+        private readonly ProfanityHandler profanityHandler = new();
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -55,7 +55,7 @@ namespace SimplePets.Commands
                     Log.Debug("Pet name reset");
                 }
 
-                bool containsProfanity = ProfanityHandler.CheckProfanity(newName);
+                bool containsProfanity = profanityHandler.CheckProfanity(newName);
                 if (containsProfanity)
                 {
                     response = "Your chosen name contains profanity. Try another name.";
