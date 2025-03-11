@@ -6,16 +6,16 @@
 ## Configs
 Config.yml:
 ```yaml
-music_warhead:
-  # Is the plugin enabled?
+simple_pets:
+# Is the plugin enabled?
   is_enabled: true
-  # Where is the audio?
-  audio_location: ''
-  # How loud is the audio?
-  audio_volume: 1.10000002
-  # Should the audio stop after it ends or keep looping?
-  stop_after_end: true
-  # Should debug messages be displayed?
+  # Should pets be godded?
+  god_pets: true
+  # What emotion should pets use (Happy, AwkwardSmile, Scared, Angry, Chad, Ogre, Neutral)?
+  pet_emotion: Happy
+  # Should pets be despawned after death?
+  despawn_pets_after_death: true
+  # Should debug messages be printed in console?
   debug: false
 ```
 
