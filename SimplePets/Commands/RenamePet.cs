@@ -21,6 +21,8 @@ namespace SimplePets.Commands
 
         public string[] Usage { get; } = new string[] { "<new name>" };
 
+        private readonly ProfanityHandler profanityChecker = new();
+
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             var player = Player.Get(sender);
@@ -53,10 +55,17 @@ namespace SimplePets.Commands
                     Log.Debug("Pet name reset");
                 }
 
+                bool containsProfanity = ProfanityHandler.CheckProfanity(newName);
+                if (containsProfanity)
+                {
+                    response = "Your chosen name contains profanity. Try another name.";
+                    return false;
+                }
+
                 dummy.DisplayNickname = newName;
                 Log.Debug($"Pet renamed to {newName}");
 
-                response = $"Your pet has been renamed to {newName}. \nSet your pet's name to 'reset' to reset their name. \nRemember, you will be held accountable for innapropriate names.";
+                response = $"Your pet has been renamed to {newName}. \nSet your pet's name to 'reset' to reset their name.";
                 return true;
             }
             else

@@ -63,6 +63,7 @@
     <Compile Include="Commands\DeletePet.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Plugin.cs" />
+    <Compile Include="ProfanityHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
