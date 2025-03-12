@@ -1,5 +1,8 @@
 ﻿using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
+using Exiled.Events.EventArgs.Scp096;
+using Exiled.Events.EventArgs.Scp173;
+using InventorySystem.Items.Usables;
 
 namespace SimplePets
 {
@@ -28,6 +31,11 @@ namespace SimplePets
                 dummy.Role.Set(ev.Player.Role);
             }
         }
+        public void OnTriggeringTesla(TriggeringTeslaEventArgs ev)
+        {
+            if (ev.Player.RankName == "pet" && ev.Player.IsNPC && !Plugin.Instance.Config.TeslaPets)
+            { ev.IsAllowed = false; }
+        }
         public void OnEscaping(EscapingEventArgs ev)
         {
             if (ev.Player.RankName == "pet" && ev.Player.IsNPC)
@@ -39,6 +47,16 @@ namespace SimplePets
             { ev.IsAllowed = false; }
         }
         public void OnMakingNoise(MakingNoiseEventArgs ev)
+        {
+            if (ev.Player.RankName == "pet" && ev.Player.IsNPC)
+            { ev.IsAllowed = false; }
+        }
+        public void OnTriggering096(EnragingEventArgs ev)
+        {
+            if (ev.Player.RankName == "pet" && ev.Player.IsNPC)
+            { ev.IsAllowed = false; }
+        }
+        public void OnTriggering173(BeingObservedEventArgs ev)
         {
             if (ev.Player.RankName == "pet" && ev.Player.IsNPC)
             { ev.IsAllowed = false; }

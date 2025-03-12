@@ -18,6 +18,9 @@ namespace SimplePets
         {
             Instance = this;
             eventHandler = new EventHandler();
+            Exiled.Events.Handlers.Player.TriggeringTesla += eventHandler.OnTriggeringTesla;
+            Exiled.Events.Handlers.Scp096.Enraging += eventHandler.OnTriggering096;
+            Exiled.Events.Handlers.Scp173.BeingObserved += eventHandler.OnTriggering173;
             Exiled.Events.Handlers.Player.Died += eventHandler.OnPlayerDied;
             Exiled.Events.Handlers.Player.Escaping += eventHandler.OnEscaping;
             Exiled.Events.Handlers.Player.Handcuffing += eventHandler.OnHandcuffing;
@@ -35,6 +38,9 @@ namespace SimplePets
             Exiled.Events.Handlers.Player.Handcuffing -= eventHandler.OnHandcuffing;
             Exiled.Events.Handlers.Player.Escaping -= eventHandler.OnEscaping;
             Exiled.Events.Handlers.Player.Died -= eventHandler.OnPlayerDied;
+            Exiled.Events.Handlers.Scp173.BeingObserved -= eventHandler.OnTriggering173;
+            Exiled.Events.Handlers.Scp096.Enraging -= eventHandler.OnTriggering096;
+            Exiled.Events.Handlers.Player.TriggeringTesla += eventHandler.OnTriggeringTesla;
             eventHandler = null;
             Instance = null;
 

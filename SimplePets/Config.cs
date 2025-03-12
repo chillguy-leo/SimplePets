@@ -13,6 +13,9 @@ namespace SimplePets
         [Description("Should pets be godded?")]
         public bool GodPets { get; set; } = true;
 
+        [Description("Should pets be able to trigger teslas?")]
+        public bool TeslaPets { get; set; } = false;
+
         [Description("Should pets be able to walk through doors?")]
         public bool GhostlyPets { get; set; } = true;
 

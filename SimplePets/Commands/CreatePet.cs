@@ -53,7 +53,7 @@ namespace SimplePets.Commands
             Timing.CallDelayed(0.5f, () =>
             {
                 dummy.Follow(player);
-                dummy.RankName = "Pet";
+                dummy.RankName = "pet";
                 if (Plugin.Instance.Config.GodPets)
                 {
                     dummy.IsGodModeEnabled = true;
