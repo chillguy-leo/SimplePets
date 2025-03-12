@@ -11,9 +11,11 @@ simple_pets:
   is_enabled: true
   # Should pets be godded?
   god_pets: true
+  # Should pets be able to walk through doors?
+  ghostly_pets: true
   # What emotion should pets use (Happy, AwkwardSmile, Scared, Angry, Chad, Ogre, Neutral)?
   pet_emotion: Happy
-  # Should pets be despawned after death?
+  # Should pets be despawned after the owners death?
   despawn_pets_after_death: true
   # Should debug messages be printed in console?
   debug: false
