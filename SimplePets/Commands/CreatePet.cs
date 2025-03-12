@@ -3,6 +3,7 @@ using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
 using MEC;
+using PlayerStatsSystem;
 using System;
 using UnityEngine;
 
@@ -52,12 +53,14 @@ namespace SimplePets.Commands
             Timing.CallDelayed(0.5f, () =>
             {
                 dummy.Follow(player);
-                dummy.EnableEffect(EffectType.Ghostly, 1, -1f);
-                dummy.EnableEffect(EffectType.SilentWalk, 255, -1f);
-
+                dummy.RankName = "Pet";
                 if (Plugin.Instance.Config.GodPets)
-                { dummy.IsGodModeEnabled = true; }
-
+                {
+                    dummy.IsGodModeEnabled = true;
+                    dummy.ReferenceHub.playerStats.GetModule<AdminFlagsStat>().SetFlag(AdminFlags.GodMode, true);
+                }
+                if (Plugin.Instance.Config.GhostlyPets)
+                { dummy.EnableEffect(EffectType.Ghostly, 1, -1); }
                 if (!dummy.IsScp)
                 { dummy.Emotion = Plugin.Instance.Config.PetEmotion; }
 

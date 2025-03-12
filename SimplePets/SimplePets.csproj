@@ -62,6 +62,7 @@
     <Compile Include="Commands\RenamePet.cs" />
     <Compile Include="Commands\DeletePet.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="EventHandler.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="ProfanityHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

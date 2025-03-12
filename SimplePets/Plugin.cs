@@ -11,12 +11,18 @@ namespace SimplePets
         public override string Author => "chillguy-leo";
         public override Version Version => new Version(1, 0, 0);
         public static Plugin Instance { get; private set; }
+        private EventHandler eventHandler;
         public static Dictionary<Player, Npc> PetDictionary { get; set; } = new();
 
         public override void OnEnabled()
         {
             Instance = this;
-            Exiled.Events.Handlers.Player.Died += OnPlayerDied;
+            eventHandler = new EventHandler();
+            Exiled.Events.Handlers.Player.Died += eventHandler.OnPlayerDied;
+            Exiled.Events.Handlers.Player.Escaping += eventHandler.OnEscaping;
+            Exiled.Events.Handlers.Player.Handcuffing += eventHandler.OnHandcuffing;
+            Exiled.Events.Handlers.Player.ChangingRole += eventHandler.OnChangingRole;
+            Exiled.Events.Handlers.Player.MakingNoise += eventHandler.OnMakingNoise;
 
             Log.Debug("Loaded succesfully");
             base.OnEnabled();
@@ -24,25 +30,16 @@ namespace SimplePets
 
         public override void OnDisabled()
         {
-            Exiled.Events.Handlers.Player.Died -= OnPlayerDied;
+            Exiled.Events.Handlers.Player.MakingNoise -= eventHandler.OnMakingNoise;
+            Exiled.Events.Handlers.Player.ChangingRole -= eventHandler.OnChangingRole;
+            Exiled.Events.Handlers.Player.Handcuffing -= eventHandler.OnHandcuffing;
+            Exiled.Events.Handlers.Player.Escaping -= eventHandler.OnEscaping;
+            Exiled.Events.Handlers.Player.Died -= eventHandler.OnPlayerDied;
+            eventHandler = null;
             Instance = null;
 
             Log.Debug("Disabled");
             base.OnDisabled();
         }
-        private void OnPlayerDied(DiedEventArgs ev)
-        {
-            if (Plugin.PetDictionary.TryGetValue(ev.Player, out var dummy) && Instance.Config.DespawnPetsAfterDeath)
-            {
-                dummy.Destroy();
-                Plugin.PetDictionary.Remove(ev.Player);
-
-                // yes i knoww this is a bad way to position broadcasts but i dont care
-                ev.Player.Broadcast(5, "<size=30>\n\n\n\nYour pet was despawned as you died.</size>");
-
-                Log.Debug("Pet despawned due to players death");
-            }
-        }
-
     }
 }

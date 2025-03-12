@@ -13,10 +13,13 @@ namespace SimplePets
         [Description("Should pets be godded?")]
         public bool GodPets { get; set; } = true;
 
+        [Description("Should pets be able to walk through doors?")]
+        public bool GhostlyPets { get; set; } = true;
+
         [Description("What emotion should pets use? (Happy, AwkwardSmile, Scared, Angry, Chad, Ogre, Neutral)")]
         public EmotionPresetType PetEmotion { get; set; } = EmotionPresetType.Happy;
 
-        [Description("Should pets be despawned after death?")]
+        [Description("Should pets be despawned after the owners death?")]
         public bool DespawnPetsAfterDeath { get; set; } = true;
 
         [Description("Should debug messages be printed in console?")]
