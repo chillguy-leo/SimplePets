@@ -11,6 +11,8 @@ simple_pets:
   is_enabled: true
   # Should pets be godded?
   god_pets: true
+  # Should pets be able to trigger teslas?
+  tesla_pets: false
   # Should pets be able to walk through doors?
   ghostly_pets: true
   # What emotion should pets use (Happy, AwkwardSmile, Scared, Angry, Chad, Ogre, Neutral)?
